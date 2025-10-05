@@ -126,7 +126,7 @@ h1, h2, h3 {
 
 /* Hero Section */
 .hero-section {
-    background-image: url('placeholder-satellite-view.jpg');
+    background-image: url('sun.jpg');
     background-color: #e0f2f1;
     background-size: cover;
     background-position: center;
@@ -157,7 +157,7 @@ h1, h2, h3 {
 }
 
 .hero-content h1 {
-    font-size: 3.5em;
+    font-size: 3.0em;
     color: white;
     margin-bottom: 20px;
 }
@@ -445,4 +445,89 @@ h1, h2, h3 {
     color: var(--primary-color);
     display: flex;
     align-items: center; 
+}
+/* Subsystems Section */
+.subsystems-section {
+    padding: 80px 5%;
+    background-color: var(--background-color);
+    text-align: center;
+}
+
+.subsystems-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.section-description {
+    font-size: 1.1em;
+    color: var(--text-color);
+    margin-bottom: 60px;
+}
+
+.subsystems-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Spacing between the full-width cards */
+}
+
+.subsystem-card {
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    background-color: var(--light-bg);
+    max-width: 1000px; /* 限制最大寬度，避免在超大螢幕上過寬 */
+    margin: 0 auto; /* 置中 */
+    /* 初始狀態: 準備動畫，透明度為0，並偏移到視窗外 */
+    opacity: 0;
+    transition: all 1s ease-out; /* 動畫時長和類型 */
+}
+
+/* 左右滑入的初始位移 */
+.subsystem-card.left-slide {
+    transform: translateX(-100%); /* 藏到左側 */
+}
+
+.subsystem-card.right-slide {
+    transform: translateX(100%); /* 藏到右側 */
+}
+
+/* 最終顯示狀態: 激活時，透明度為1，位移歸零 */
+.subsystem-card.visible {
+    opacity: 1;
+    transform: translateX(0); /* 滑入中心 */
+}
+
+/* 內容排版 */
+.subsystem-card i {
+    font-size: 3em;
+    color: var(--secondary-color);
+    margin-right: 30px;
+    min-width: 40px; 
+}
+
+.subsystem-card h3 {
+    font-size: 1.3em;
+    margin-bottom: 5px;
+    color: #202124;
+}
+
+.subsystem-card p {
+    font-size: 1em;
+    color: #5f6368;
+}
+
+/* 響應式調整 */
+@media (max-width: 600px) {
+    .subsystem-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    .subsystem-card i {
+        margin: 0 0 15px 0;
+    }
 }
