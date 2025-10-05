@@ -202,8 +202,9 @@ h1, h2, h3 {
 }
 
 .features-section h2 {
-    font-size: 2em;
+	font-size: 2.5em; /* 調整為 Subsystems 的大小 */
     margin-bottom: 40px;
+    color: var(--primary-color)
 }
 
 .features-grid {
@@ -239,8 +240,9 @@ h1, h2, h3 {
 }
 
 .pricing-section h2 {
-    font-size: 2em;
+    font-size: 2.5em; /* 調整為 Subsystems 的大小 */
     margin-bottom: 40px;
+    color: var(--primary-color);
 }
 
 .pricing-grid {
@@ -446,6 +448,38 @@ h1, h2, h3 {
     display: flex;
     align-items: center; 
 }
+
+.feature-item,
+.pricing-card,
+.stat-card { /* <--- **新增 .stat-card 到此處**，讓它使用通用的淡入動畫 */
+    /* 初始狀態：完全透明 */
+    opacity: 0;
+    /* 輕微向上移動，增加淡入時的動感 */
+    transform: translateY(20px); 
+    /* 設定動畫效果 */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* 滾動時觸發的類別：使其完全顯示 */
+.feature-item.fade-in,
+.pricing-card.fade-in,
+.stat-card.fade-in { /* <--- **新增 .stat-card.fade-in** */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 價格卡片淡入動畫的延遲設定，使它們依序出現 */
+.pricing-card:nth-child(1) { transition-delay: 0s; }
+.pricing-card:nth-child(2) { transition-delay: 0.2s; }
+.pricing-card:nth-child(3) { transition-delay: 0.4s; }
+
+/* Feature 卡片淡入動畫的延遲設定 */
+.features-grid .feature-item:nth-child(1) { transition-delay: 0s; }
+.features-grid .feature-item:nth-child(2) { transition-delay: 0.15s; }
+.features-grid .feature-item:nth-child(3) { transition-delay: 0.3s; }
+.features-grid .feature-item:nth-child(4) { transition-delay: 0.45s; }
+
+
 /* Subsystems Section */
 .subsystems-section {
     padding: 80px 5%;
@@ -486,19 +520,18 @@ h1, h2, h3 {
     transition: all 1s ease-out; /* 動畫時長和類型 */
 }
 
-/* 左右滑入的初始位移 */
 .subsystem-card.left-slide {
-    transform: translateX(-100%); /* 藏到左側 */
+    transform: translateX(-100%) !important; /* 強制鎖定左側初始位置 */
 }
 
 .subsystem-card.right-slide {
-    transform: translateX(100%); /* 藏到右側 */
+    transform: translateX(100%) !important; /* 強制鎖定右側初始位置 */
 }
 
 /* 最終顯示狀態: 激活時，透明度為1，位移歸零 */
 .subsystem-card.visible {
-    opacity: 1;
-    transform: translateX(0); /* 滑入中心 */
+    opacity: 1 !important; /* 確保透明度正確 */
+    transform: translateX(0) !important; /* 滑入中心 (最終修正版: 使用 !important 確保歸位) */
 }
 
 /* 內容排版 */
